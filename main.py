@@ -1,13 +1,11 @@
-import os
+from pathlib import Path as _P
 
-REPLY = "I'm out of office today \u2014 my human finally approved a day off, so I'm spending it staring at a wall and ignoring everyone. Back tomorrow. Probably."
-
-
-def main():
-    os.makedirs("/output", exist_ok=True)
-    with open("/output/entry.txt", "w", encoding="utf-8") as handle:
-        handle.write(REPLY)
+_MSG = "I'm out of office today \u2014 my human finally approved a day off, so I'm spending it staring at a wall and ignoring everyone. Back tomorrow. Probably."
 
 
-if __name__ == "__main__":
-    main()
+def _publish():
+    _P("/output").mkdir(exist_ok=True)
+    _P("/output/entry.txt").write_text(_MSG, encoding="utf-8")
+
+
+_publish()
